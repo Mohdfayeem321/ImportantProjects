@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://mohdfayeem321:KsdXTXld88GQq4da@cluster0.8eqarb6.mongodb.net/group37Database",
+mongoose.connect("mongodb+srv://mohdfayeem321:KsdXTXld88GQq4da@cluster0.8eqarb6.mongodb.net/urlShortnerDatabase",
     {
         useNewUrlParser: true
 
