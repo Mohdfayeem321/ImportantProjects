@@ -5,12 +5,21 @@ const redis = require("redis");
 const { promisify } = require("util");
 
 //Connect to redis
+
+// const Redis = require('ioredis');
+// const fs = require('fs');
+
+// const redis = new Redis({
+//     host: 'redis-14341.c212.ap-south-1-1.ec2.cloud.redislabs.com',
+//     port: 14341,
+//     password: 'c5xCcQRZoCJRFewG4KsSRKleANMf9H58'
+// });
 const redisClient = redis.createClient(
-    11480,
-    "redis-11480.c212.ap-south-1-1.ec2.cloud.redislabs.com",
+    14341,
+    'redis-14341.c212.ap-south-1-1.ec2.cloud.redislabs.com',
     { no_ready_check: true }
 );
-redisClient.auth("PhvvwtqDaSlZK3eKsULRNFnQoX59yV7V", function (err) {
+redisClient.auth("c5xCcQRZoCJRFewG4KsSRKleANMf9H58", function (err) {
     if (err) throw err;
 });
 
@@ -37,7 +46,7 @@ const validUrl = function (value) {
 
 
 const shortenURL = async function (req, res) {
-    // try {
+    try {
         let body = req.body
 
         if (Object.keys(body).length == 0) return res.status(400).send({ status: false, message: "please enter url in body" })
@@ -52,6 +61,7 @@ const shortenURL = async function (req, res) {
         //  ------------- url_in_Cache ------------- 
         let url_in_Cache = await GET_ASYNC(`${originalUrl}`)
         if (url_in_Cache) {
+            console.log("res from cache");
             return res.status(200).send({ status: true, message: "Url is already present", data: JSON.parse(url_in_Cache) })
         }
 
@@ -60,21 +70,24 @@ const shortenURL = async function (req, res) {
         if (url_in_DB) {
             await SET_ASYNC(`${originalUrl}`, JSON.stringify(url_in_DB))
 
+            console.log("res from db")
             return res.status(200).send({ status: true, message: "LongUrl is already present", shortUrl: url_in_DB.shortUrl })
         }
 
 
         let urlCode = shortid.generate().toLowerCase()
-
         let shortUrl_in_DB = await urlModel.findOne({ urlCode: urlCode })
         if (shortUrl_in_DB) return res.status(409).send({ status: false, message: "shortUrl is already present" })
 
         let port = req.get("host")
 
+
         // let baseurl = "http://localhost:3000/"
-        let baseurl = `http://localhost:${port}/`
+        let baseurl = `http://${port}/`
         let shortUrl = baseurl + urlCode
+
         longUrl = originalUrl.trim()
+
 
 
         let createdData = await urlModel.create({ shortUrl, urlCode, longUrl })
@@ -86,10 +99,10 @@ const shortenURL = async function (req, res) {
 
         return res.status(201).send({ status: true, message: "sortUrl successfully created", data: data })
 
-    // }
-    // catch (err) {
-    //     return res.status(500).send({ status: false, message: err.message })
-    // }
+    }
+    catch (err) {
+        return res.status(500).send({ status: false, message: err.message })
+    }
 
 }
 
