@@ -1,0 +1,60 @@
+/* BookDetails.css */
+
+.book-details {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.book-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.author {
+  color: #666;
+}
+
+
+/* Edit Button */
+.edit-sale-list {
+  background-color: #007bff; /* Blue background color */
+  color: #fff; /* White text color */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin-right: 10px; /* Add margin to separate the buttons */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-sale-list:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  
+}
+
+/* Delete Button */
+.del-sale-list {
+  background-color: #ff6347; /* Red background color */
+  color: #fff; /* White text color */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.del-sale-list:hover {
+  background-color: #d64231; /* Darker red on hover */
+}

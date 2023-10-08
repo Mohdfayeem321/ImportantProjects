@@ -1,0 +1,49 @@
+.header-list-link {
+  display: flex;
+  justify-content: space-around;
+}
+
+.header-main {
+  background-color: #015998;
+}
+
+.login-button {
+  display: block;
+  width: 10%;
+  padding: 12px;
+  background-color: #ff9500;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 80%;
+  margin-bottom: 2%;
+  text-decoration: none;
+}
+
+.login-button:hover {
+  background-color: #cc7a00;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  margin-top: 0;
+}
+
+li {
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+/* Define color for the navigation links */
+.li-color {
+  color: #ffffff; /* Your desired text color */
+  text-decoration: none; /* Remove underline on links */
+}
+
+/* Define individual link colors if needed */
+.li-color:hover {
+  color: black /* Change the link color on hover */
+}
