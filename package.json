@@ -1,0 +1,36 @@
+{
+  "name": "Warewe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohdfayeem321/ImportantProjects.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mohdfayeem321/ImportantProjects/issues"
+  },
+  "homepage": "https://github.com/Mohdfayeem321/ImportantProjects#readme",
+  "dependencies": {
+    "@hapi/topo": "^6.0.2",
+    "adm-zip": "^0.5.10",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.1.1",
+    "https": "^1.0.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.0.1",
+    "nodemon": "^2.0.20",
+    "npm": "^9.6.7",
+    "path": "^0.12.7",
+    "sequelize": "^6.28.0"
+  }
+}

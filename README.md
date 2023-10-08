@@ -1,0 +1,3 @@
+Develop a REST client application akin to POSTMAN, capable of facilitating various HTTP request methods such as GET, PUT, POST, and DELETE within a Next.js or React environment. The application should further exhibit the ability to render and present the corresponding response data (avoid page reloads). For those opting to employ Next.js, the utilization of API routes is recommended, while those choosing Bun/Express server may proceed accordingly.
+
+Additionally, it is highly encouraged to incorporate Object-Relational Mapping (ORM) frameworks such as Prisma or Drizzle for the purpose of storing and displaying historical requests. It should be noted that there is no requirement to replicate the user interface of POSTMAN; it is merely provided as a point of reference.
