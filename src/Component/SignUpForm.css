@@ -1,0 +1,150 @@
+.container{
+    display: flex;
+    justify-content: center;
+    background-color:#ecede6;
+    padding: 2rem;
+}
+
+.inner-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  /* width: 100%; */
+}
+
+.firstName{
+    display: flex;
+    justify-content: space-between;
+}
+
+.firstName > input{
+    padding: 8px;
+    width: 15.5rem
+}
+
+.inner-submit-div{
+   display: flex;
+   flex-direction: column;
+   gap: 2.5rem;
+   margin-top: 2rem;
+   margin-bottom: 2rem
+}
+
+.inner-submit-div > input {
+    padding: 8px;
+}
+
+.submit-button{
+    background-color:rgba(16, 16, 192, 0.863);
+    padding: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+h1, h5 {
+    color: rgba(16, 16, 192, 0.863);
+    text-align: left;
+}
+
+.sign-in {
+    padding: 8px;
+    background-color: white;
+    color: rgba(16, 16, 192, 0.863);
+    border-color:rgba(16, 16, 192, 0.863);
+    width: 8rem;
+    justify-self: flex-end;
+    cursor: pointer;
+}
+
+.picture > img {
+    width: 35rem;
+    height: 44rem;
+}
+
+.picture{
+    position: relative;
+    display: inline-block;
+}
+
+.inner-div {
+  position: absolute;
+  bottom: -1rem;
+  left: -1rem;
+  width: 100%;
+  height: 40%;
+  background-color: rgba(0, 0, 0, 0.404); /* Adjust background color and opacity as needed */
+  border-radius: 0 0 0px 1rem;
+}
+
+.calci{
+    text-align: center;
+    color: #ecede6;
+}
+
+.calci-bar{
+    background-color: #ecede6;
+    width: 60px;
+    height: 5px;
+    position: absolute;
+    left: 46%;
+    top: 30%;
+}
+
+.calci-bar > p {
+    color: #ecede6;
+    width: 30rem;
+    position: relative;
+    right: 12rem
+}
+
+.sign-in-btn{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.inner-img{
+    justify-self: end;
+    align-self: flex-end;
+}
+
+.form {
+    width: 35rem;
+}
+
+/* Media query for screens smaller than 600 pixels */
+
+@media screen and (max-width: 600px) {
+    .container{
+        width: 100%;
+    }
+  .inner-container {
+    /* Styles for screens smaller than 600 pixels */
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .submit > input {
+    width: 12.5rem;
+    align-items: center;
+  }
+
+  .firstName > input {
+    width: 6.25rem;
+    align-items: center;
+  }
+
+  /* img {
+    width: 13rem;
+    height: 21rem;
+} */
+}
+
+
+
+
