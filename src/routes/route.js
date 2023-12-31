@@ -20,15 +20,15 @@ router.post("/login", userLogin);
 
 //============ Get User Details ==============//
 
-router.get("/auth/user", Authentication, Authorization, upload.single('file'), getUser);
+router.get("/auth/user/:userId", Authentication, Authorization, upload.single('file'), getUser);
 
 //============ Update User Details ==============//
 
-router.put("/auth/user", Authentication, Authorization, updateUserData);
+router.put("/auth/user/:userId", Authentication, Authorization, updateUserData);
 
 //============ Delete User ==============//
 
-router.delete("/auth/user", Authentication, Authorization, deleteUser);
+router.delete("/auth/user/:userId", Authentication, Authorization, deleteUser);
 
 
 router.all("/**", (req, res) => {

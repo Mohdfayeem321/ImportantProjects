@@ -16,15 +16,13 @@ const createUser = async (req, res) => {
 
         let data = req.body;
 
-        console.log(data);
-
         let files = req.files
 
         console.log(files);
 
         //===================== Destructuring User Body Data =====================//
 
-        let { name, email, phone, password, ...rest } = data
+        let { name, email, phone, password, isAdmin, ...rest } = data
 
         //===================== Checking User Body Data =====================//
         if (!validator.checkInputsPresent(data)) return res.status(400).send({ status: false, message: "No data found from body! You need to put the Mandatory Fields (i.e. name, email, profileImage, phone, password). " });
@@ -66,17 +64,16 @@ const createUser = async (req, res) => {
 
         //===================== Checking the File is present or not and Create S3 Link =====================//
 
-        if (files && files.length > 0) {
+        // if (files && files.length > 0) {
 
-            if (files.length > 1) return res.status(400).send({ status: false, message: "You can't enter more than one file for Create!" })
-            if (!validator.isValidImage(files[0]['originalname'])) { return res.status(400).send({ status: false, message: "You have to put only Image." }) }
+        //     if (files.length > 1) return res.status(400).send({ status: false, message: "You can't enter more than one file for Create!" })
+        //     if (!validator.isValidImage(files[0]['originalname'])) { return res.status(400).send({ status: false, message: "You have to put only Image." }) }
 
-            data.profileImage = await uploadFile(files[0])
-        }
-        else {
-            return res.status(400).send({ msg: "Please upload image to create signup!" })
-        }
-
+        //     data.profileImage = await uploadFile(files[0])
+        // }
+        // else {
+        //     return res.status(400).send({ msg: "Please upload image to create signup!" })
+        // }
 
         //===================== Final Creation of User =====================//
 

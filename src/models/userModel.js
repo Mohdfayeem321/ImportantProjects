@@ -8,18 +8,15 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
         unique: true,
         trim: true
     },
     profileImage: {
         type: String,
-        required: true,
         trim: true
     },
     phone: {
         type: String,
-        required: true,
         unique: true,
         trim: true
     },
@@ -33,6 +30,10 @@ const userSchema = new mongoose.Schema({
         default: false
     },
     isDeleted: {
+        type: Boolean,
+        default: false
+    },
+    deletedAt: {
         type: Boolean,
         default: false
     }

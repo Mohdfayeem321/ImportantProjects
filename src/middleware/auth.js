@@ -10,7 +10,8 @@ const Authentication = async (req, res, next) => {
     try {
 
         //===================== Check Presence of Key with Value in Header =====================//
-        let token = req.headers['authorization']
+        let token = req.headers['authorization'];
+
         if (!token) { return res.status(400).send({ status: false, message: "Token must be Present." }) }
         token = token.slice(7)
         //===================== Verify token & asigning it's value in request body =====================//
