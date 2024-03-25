@@ -8,9 +8,6 @@ const route = require('./routes/routes');
 
 dotenv.config();
 
-// Import routes
-// Create Express app
-
 const app = express();
 
 // Middleware
@@ -22,6 +19,7 @@ app.use(express.json());
 mongoose.connect(process.env.MONGODB_URI);
 
 // Check database connection
+
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => {

@@ -7,8 +7,6 @@ const addCartProducts = async (req, res) => {
     try {
         const { _id: productId, quantity } = req.body;
 
-        console.log(req.body);
-
         // Find the user by ID
         const user = await User.findById(req.user.id);
         if (!user) {
@@ -51,7 +49,6 @@ const addCartProducts = async (req, res) => {
 
 
 
-// app.delete('/api/cart/remove/:productId', authenticateToken,
 
 const removeProduct = async (req, res) => {
     try {
@@ -59,7 +56,7 @@ const removeProduct = async (req, res) => {
         console.log(req.user);
         const cart = await Cart.findOne({ user: req.user.id });
         console.log(productId, cart);
-        cart.products = cart.products.filter(item => item.product.toString() !== productId); // Corrected line
+        cart.products = cart.products.filter(item => item.product.toString() !== productId);
         await cart.save();
         res.json({ status: 200, message: 'Product removed from cart' });
     } catch (err) {
@@ -69,6 +66,6 @@ const removeProduct = async (req, res) => {
 
 
 
-module.exports = {addCartProducts, removeProduct }
+module.exports = { addCartProducts, removeProduct }
 
 

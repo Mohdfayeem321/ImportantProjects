@@ -1,5 +1,4 @@
 const Product = require('../model/products');
-// Products
 
 const createProduct = async (req, res) => {
     try {
@@ -12,7 +11,6 @@ const createProduct = async (req, res) => {
     }
 };
 
-// app.get('/api/products',
 const getProducts = async (req, res) => {
     try {
         const products = await Product.find();
