@@ -1,47 +1,74 @@
 const User = require('../model/user');
+const Product = require('../model/products');
+const Cart = require('../model/cart');
 
-
-// Cart
-// app.get('/api/cart', authenticateToken,
-
-const getCartDetails = async (req, res) => {
-    try {
-        const user = await User.findById(req.user.id);
-        res.json(user.cart);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-};
-
-// app.post('/api/cart/add', authenticateToken,
 
 const addCartProducts = async (req, res) => {
     try {
-        const { productId, quantity } = req.body;
+        const { _id: productId, quantity } = req.body;
+
+        console.log(req.body);
+
+        // Find the user by ID
         const user = await User.findById(req.user.id);
-        user.cart.push({ productId, quantity });
-        await user.save();
-        res.status(201).json({ message: 'Product added to cart' });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Check if the product exists
+        const product = await Product.findById(productId);
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        // Find the cart entry for the user
+        let cartEntry = await Cart.findOne({ user: user._id });
+
+        // If the cart entry doesn't exist, create a new one
+        if (!cartEntry) {
+            cartEntry = new Cart({
+                user: user._id,
+                products: [{ product: product._id, quantity: quantity }]
+            });
+        } else {
+            // Check if the product already exists in the cart
+            const existingProduct = cartEntry.products.find(item => item.product.equals(product._id));
+            if (existingProduct) {
+                existingProduct.quantity += 1; // Increase the quantity if the product already exists
+            } else {
+                cartEntry.products.push({ product: product._id, quantity: quantity }); // Add the product to the cart
+            }
+        }
+
+        // Save the cart entry to the database
+        await cartEntry.save();
+
+        res.status(201).json({ status: 201, message: 'Product added to cart' });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 };
+
 
 
 // app.delete('/api/cart/remove/:productId', authenticateToken,
 
 const removeProduct = async (req, res) => {
     try {
-        const productId = req.params.productId;
-        const user = await User.findById(req.user.id);
-        user.cart = user.cart.filter(item => item.productId !== productId);
-        await user.save();
-        res.json({ message: 'Product removed from cart' });
+        const productId = req.body._id;
+        console.log(req.user);
+        const cart = await Cart.findOne({ user: req.user.id });
+        console.log(productId, cart);
+        cart.products = cart.products.filter(item => item.product.toString() !== productId); // Corrected line
+        await cart.save();
+        res.json({ status: 200, message: 'Product removed from cart' });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 };
 
-module.exports = { getCartDetails, addCartProducts, removeProduct }
+
+
+module.exports = {addCartProducts, removeProduct }
 
 
